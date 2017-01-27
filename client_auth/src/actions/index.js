@@ -63,7 +63,7 @@ export function fetchMessage() {
 		})
 		.then(response => dispatch(messageAction(response.data.message))
 		)
-		.catch(err => dispatch(messageAction(err.response.data))
+		.catch(err => dispatch(authError(err.response.data))
 		)
 	}
 }
