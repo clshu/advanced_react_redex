@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, AUTH_TOKEN_KEY } from './types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, AUTH_TOKEN_KEY, FETCH_MESSAGE } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
 
@@ -58,14 +58,19 @@ export function signoutUser() {
 
 export function fetchMessage() {
 	return function(dispatch) {
-		axios.get(ROOT_URL)
-		.then(response => {
-
+		axios.get(ROOT_URL, {
+			headers: { authorization: localStorage.getItem(AUTH_TOKEN_KEY)}
 		})
-		.catch(err => {
-			dispatch(authError(err.response.data))
-		})
+		.then(response => dispatch(messageAction(response.data.message))
+		)
+		.catch(err => dispatch(messageAction(err.response.data))
+		)
 	}
 }
 
-
+export function messageAction(message) {
+	return {
+		type: FETCH_MESSAGE,
+		payload: message
+	}
+}
