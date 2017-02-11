@@ -7,8 +7,8 @@ const LocalStrategy = require('passport-local');
 /*
 
 Incoming Request --> Passport --> Route Handler
-						|
-						|
+											|
+											|
 			|-----------------------|
 			|												|
 			|												|
