@@ -10,11 +10,11 @@ Incoming Request --> Passport --> Route Handler
 						|
 						|
 			|-----------------------|
-			|						|
-			|						|
+			|												|
+			|												|
 	Passport Strategy 1		Passport Strategy 2
-			|						|
-			|						|
+			|												|
+			|												|
 		Verify User			Verify User with a
 		with a JWT 			email and password
 */
@@ -31,8 +31,8 @@ Auth's request --> Verify Token --> Resource Access
 
 // Set Options for Local
 // By default local strategy will look for username and password
-// Replace username with email 
-const localOptions = { usernameField: 'email' }; 
+// Replace username with email
+const localOptions = { usernameField: 'email' };
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
 	// Verify this email and password, call done with the user
 	// if it is correct email and password
@@ -86,4 +86,3 @@ const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
 // Tell passprot to use this strategy
 passport.use(jwtLogin);
 passport.use(localLogin);
-
