@@ -4,13 +4,13 @@ const passport = require('passport');
 
 /*
 
-Incoming Request -> Router -------------------> Athentication controller -> Response
+Incoming Request -> Router -------------------> Athentication route hand -> Response
 							|
 							|
-							---> Logged In ? -> Comments controller -> Response
+							---> Logged In ? -> Comments handler -> Response
 							|
 							|
-							---> Logged In ? -> Posts controller -> Response
+							---> Logged In ? -> Posts handler -> Response
 */
 
 // By default passport use cookie and session is true, set it false here
@@ -24,5 +24,5 @@ module.exports = function(app) {
 	});
 	app.post('/signin', requireSignin, Authentication.signin);
 	app.post('/signup', Authentication.signup);
-		
+
 }
